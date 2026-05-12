@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lead generator demo</title>
+    <style>
+      :root {
+        font-family: system-ui, sans-serif;
+        background: #0f1219;
+        color: #e8eaef;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+      }
+      main {
+        max-width: 40rem;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 1.5rem;
+        margin-top: 0;
+      }
+      code {
+        background: #1a2030;
+        padding: 0.15rem 0.35rem;
+        border-radius: 4px;
+      }
+    </style>
+    <script>
+      window.LEAD_GEN_API_BASE = "";
+      window.LEAD_GEN_BUSINESS_HINT =
+        "service business that builds conversion systems (chat, CRM routing, ads)";
+    </script>
+    <script src="./widget.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <h1>Lead generator (MVP demo)</h1>
+      <p>
+        Open the chat widget at the bottom-right. After the bot qualifies you, submit
+        your details — the API scores the lead and can fire a webhook for hot leads.
+      </p>
+      <p>
+        API: <code>POST /api/chat</code>, <code>POST /api/leads</code>,
+        <code>GET /health</code>
+      </p>
+    </main>
+  </body>
+</html>

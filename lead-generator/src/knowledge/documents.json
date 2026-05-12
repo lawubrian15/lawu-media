@@ -1,0 +1,26 @@
+[
+  {
+    "id": "svc-web",
+    "title": "Web presence & landing pages",
+    "body": "We design and build high-converting sites: structure, copy guidance, performance, and basic SEO. Typical projects range from single landing pages to small multi-page sites.",
+    "tags": ["website", "landing", "seo", "conversion"]
+  },
+  {
+    "id": "svc-ads",
+    "title": "Paid acquisition",
+    "body": "Campaign strategy and creative testing for Meta and Google. We focus on cost per qualified lead, not vanity reach.",
+    "tags": ["ads", "meta", "google", "ppc", "leads"]
+  },
+  {
+    "id": "svc-crm",
+    "title": "CRM & automation",
+    "body": "Pipeline setup: HubSpot or Sheets MVP, instant lead alerts, simple nurturing sequences, and handoff rules for sales.",
+    "tags": ["crm", "hubspot", "automation", "routing", "sheets"]
+  },
+  {
+    "id": "faq-start",
+    "title": "How fast can we start?",
+    "body": "Discovery calls are usually within 48 hours. Simple widget + routing MVPs can go live in days once access and copy are approved.",
+    "tags": ["timeline", "start", "mvp"]
+  }
+]
