@@ -8,6 +8,7 @@ interface ButtonProps {
   children: React.ReactNode;
   href?: string;
   onClick?: () => void;
+  type?: "button" | "submit" | "reset";
   variant?: "primary" | "secondary" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
   className?: string;
@@ -19,6 +20,7 @@ export function Button({
   children,
   href,
   onClick,
+  type = "button",
   variant = "primary",
   size = "md",
   className,
@@ -58,6 +60,7 @@ export function Button({
     <MotionComponent
       href={href}
       onClick={onClick}
+      {...(!href ? { type } : {})}
       className={classes}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}

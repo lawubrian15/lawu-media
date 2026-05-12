@@ -11,8 +11,8 @@ export const companyInfo = {
   vision:
     "To be the leading catalyst for brand growth in the digital age, transforming how companies interact with their communities through innovation and human connection.",
   address: "180 Katherine Street, Sandton, Johannesburg",
-  email: "hello@lawumedia.co.za",
-  phone: "+27 11 123 4567",
+  email: "pakilawu0@gmail.com",
+  phone: "+27 61 948 1028",
 };
 
 export const heroContent = {

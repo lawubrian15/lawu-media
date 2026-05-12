@@ -20,16 +20,34 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const phoneTel = companyInfo.phone.replace(/\s/g, "");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(null);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        error?: string;
+      };
+      if (!res.ok) {
+        setSubmitError(data.error ?? "Something went wrong. Please try again.");
+        return;
+      }
+      setIsSubmitted(true);
+    } catch {
+      setSubmitError("Network error. Check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -105,7 +123,14 @@ export default function ContactPage() {
                     <h3 className="font-semibold text-text-primary mb-1">
                       Email
                     </h3>
-                    <p className="text-text-secondary">{companyInfo.email}</p>
+                    <p className="text-text-secondary">
+                      <a
+                        href={`mailto:${companyInfo.email}`}
+                        className="hover:text-accent transition-colors"
+                      >
+                        {companyInfo.email}
+                      </a>
+                    </p>
                   </div>
                 </div>
 
@@ -117,7 +142,14 @@ export default function ContactPage() {
                     <h3 className="font-semibold text-text-primary mb-1">
                       Phone
                     </h3>
-                    <p className="text-text-secondary">{companyInfo.phone}</p>
+                    <p className="text-text-secondary">
+                      <a
+                        href={`tel:${phoneTel}`}
+                        className="hover:text-accent transition-colors"
+                      >
+                        {companyInfo.phone}
+                      </a>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -159,6 +191,14 @@ export default function ContactPage() {
                   className="bg-surface border border-border rounded-2xl p-8"
                 >
                   <div className="space-y-6">
+                    {submitError && (
+                      <p
+                        className="text-sm text-red-400 bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3"
+                        role="alert"
+                      >
+                        {submitError}
+                      </p>
+                    )}
                     {/* Name */}
                     <div>
                       <label
@@ -275,6 +315,7 @@ export default function ContactPage() {
 
                     {/* Submit Button */}
                     <Button
+                      type="submit"
                       variant="primary"
                       size="lg"
                       className="w-full"
