@@ -3,15 +3,43 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+type HeroVideoSource = {
+  src: string;
+  label: string;
+};
+
 interface VideoHeroProps {
+  videos?: HeroVideoSource[];
   videoSrc1?: string;
   videoSrc2?: string;
 }
 
+const DEFAULT_VIDEOS: HeroVideoSource[] = [
+  {
+    src: "/videos/5275266-uhd_4096_2160_25fps.mp4",
+    label: "Brand Stories",
+  },
+  {
+    src: "/videos/17647959-uhd_3840_2160_30fps.mp4",
+    label: "Campaign Highlights",
+  },
+];
+
 export function VideoHero({
-  videoSrc1 = "/videos/5275266-uhd_4096_2160_25fps.mp4",
-  videoSrc2 = "/videos/17647959-uhd_3840_2160_30fps.mp4",
+  videos,
+  videoSrc1,
+  videoSrc2,
 }: VideoHeroProps) {
+  const sources: HeroVideoSource[] =
+    videos && videos.length > 0
+      ? [
+          videos[0],
+          videos[1] ?? videos[0],
+        ]
+      : [
+          { src: videoSrc1 ?? DEFAULT_VIDEOS[0].src, label: DEFAULT_VIDEOS[0].label },
+          { src: videoSrc2 ?? DEFAULT_VIDEOS[1].src, label: DEFAULT_VIDEOS[1].label },
+        ];
   const [activeVideo, setActiveVideo] = useState(0);
   const [videosLoaded, setVideosLoaded] = useState([false, false]);
   const [canPlay, setCanPlay] = useState(false);
@@ -122,7 +150,7 @@ export function VideoHero({
           }`}
           style={{ willChange: "opacity", objectPosition: "center" }}
         >
-          <source src={videoSrc1} type="video/mp4" />
+          <source src={sources[0].src} type="video/mp4" />
         </video>
 
         <video
@@ -138,7 +166,7 @@ export function VideoHero({
           }`}
           style={{ willChange: "opacity", objectPosition: "center" }}
         >
-          <source src={videoSrc2} type="video/mp4" />
+          <source src={sources[1].src} type="video/mp4" />
         </video>
 
         {/* Mobile overlay - lighter for better visibility */}
@@ -225,7 +253,7 @@ export function VideoHero({
         }`}
         style={{ willChange: "opacity" }}
       >
-        <source src={videoSrc1} type="video/mp4" />
+        <source src={sources[0].src} type="video/mp4" />
       </video>
 
       {/* Video 2 */}
@@ -243,7 +271,7 @@ export function VideoHero({
         }`}
         style={{ willChange: "opacity" }}
       >
-        <source src={videoSrc2} type="video/mp4" />
+        <source src={sources[1].src} type="video/mp4" />
       </video>
 
       {/* Light Overlay */}
@@ -279,7 +307,7 @@ export function VideoHero({
         className="absolute bottom-20 left-1/2 -translate-x-1/2 z-30 hidden md:block"
       >
         <span className="text-xs text-text-muted uppercase tracking-wider">
-          Now Playing: {activeVideo === 0 ? "Brand Stories" : "Campaign Highlights"}
+          Now Playing: {sources[activeVideo].label}
         </span>
       </motion.div>
     </div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
@@ -7,8 +7,6 @@ import { cn } from "@/lib/utils";
 
 interface PricingCardProps {
   name: string;
-  price: string;
-  period: string;
   description: string;
   features: string[];
   highlighted?: boolean;
@@ -17,8 +15,6 @@ interface PricingCardProps {
 
 export function PricingCard({
   name,
-  price,
-  period,
   description,
   features,
   highlighted = false,
@@ -45,21 +41,12 @@ export function PricingCard({
         </div>
       )}
 
-      {/* Plan Name */}
       <h3 className="text-lg font-semibold text-text-primary mb-2">{name}</h3>
 
-      {/* Price */}
-      <div className="mb-4">
-        <span className="text-4xl md:text-5xl font-bold text-text-primary">
-          {price}
-        </span>
-        <span className="text-text-secondary">{period}</span>
-      </div>
+      <p className="text-sm font-medium text-text-muted mb-4">Price on request</p>
 
-      {/* Description */}
       <p className="text-sm text-text-secondary mb-6">{description}</p>
 
-      {/* Features */}
       <ul className="space-y-3 mb-8">
         {features.map((feature, i) => (
           <li key={i} className="flex items-start gap-3">
@@ -81,7 +68,6 @@ export function PricingCard({
         ))}
       </ul>
 
-      {/* CTA */}
       <Button
         href="/contact"
         variant={highlighted ? "primary" : "secondary"}

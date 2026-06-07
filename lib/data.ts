@@ -1,4 +1,4 @@
-// All content extracted from the Lawu Media PDF
+﻿// All content extracted from the Lawu Media PDF
 // Structured for easy maintenance and component consumption
 
 export const companyInfo = {
@@ -226,7 +226,7 @@ export const services = [
     shortDescription:
       "We move beyond vanity metrics to find creators who genuinely align with your brand values.",
     fullDescription:
-      "Strategic matchmaking with creators—from Nano to Mega—who share your target audience's trust.",
+      "Strategic matchmaking with creatorsâ€”from Nano to Megaâ€”who share your target audience's trust.",
     features: [
       "Strategic Matchmaking: Identifying creators who share your target audience's trust.",
       "End-to-End Management: Handling everything from initial outreach to final performance reporting.",
@@ -285,7 +285,7 @@ export const differentiators = [
     number: "01",
     title: "Data-Driven Precision",
     description:
-      "Every campaign is tracked, measured, and optimized in real-time. We don't just deliver likes—we deliver measurable impact on your bottom line.",
+      "Every campaign is tracked, measured, and optimized in real-time. We don't just deliver likesâ€”we deliver measurable impact on your bottom line.",
   },
   {
     number: "02",
@@ -303,7 +303,7 @@ export const differentiators = [
     number: "04",
     title: "Cultural Relevance",
     description:
-      "We ensure inclusivity and local nuance in every campaign. South Africa is diverse and multilingual—we make sure your message resonates.",
+      "We ensure inclusivity and local nuance in every campaign. South Africa is diverse and multilingualâ€”we make sure your message resonates.",
   },
   {
     number: "05",
@@ -370,7 +370,7 @@ export const faq = [
   {
     question: "What are the pricing packages?",
     answer:
-      "We offer three tiers: Basic (R8,500/mo) for brands starting their digital journey, Business (R10,500/mo) for scaling brands ready for ads, and Professional (R12,500/mo) for comprehensive digital takeovers. Note: pricing excludes ad budget.",
+      "We offer three packages — Basic, Business, and Professional — for brands at different stages of growth. Pricing is discussed during your consultation so we can match scope, channels, and goals.",
   },
   {
     question: "How long does it take to see results?",
@@ -383,8 +383,6 @@ export const packages = [
   {
     id: "basic",
     name: "Basic",
-    price: "R8,500",
-    period: "/mo",
     description:
       "Perfect for brands that need a professional digital storefront without a massive investment. Keeps you relevant and active.",
     features: [
@@ -398,8 +396,6 @@ export const packages = [
   {
     id: "business",
     name: "Business",
-    price: "R10,500",
-    period: "/mo",
     description:
       "Designed for businesses ready to scale. By adding dedicated Ad Management, we actively hunt for new customers.",
     features: [
@@ -415,8 +411,6 @@ export const packages = [
   {
     id: "professional",
     name: "Professional",
-    price: "R12,500",
-    period: "/mo",
     description:
       "A comprehensive digital takeover. This package utilizes every tool in our arsenal for maximum impact.",
     features: [
@@ -530,9 +524,11 @@ export const navLinks = {
   },
 };
 
+// Agency stats (legacy PDF figures). Live TikTok stats live in lib/creator-data.json.
 export const stats = [
   { value: 50, suffix: "+", label: "Campaigns Delivered" },
   { value: 2.5, suffix: "M+", label: "Impressions Generated" },
   { value: 6, suffix: "", label: "Brand Partners" },
   { value: 340, suffix: "%", label: "Avg. ROI Increase" },
 ];
+

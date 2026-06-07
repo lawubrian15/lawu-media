@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/navbar";
@@ -41,28 +41,13 @@ export default function PackagesPage() {
             {packages.map((pkg, index) => (
               <PricingCard
                 key={pkg.id}
-                name={pkg.name}
-                price={pkg.price}
-                period={pkg.period}
-                description={pkg.description}
+                name={pkg.name}                description={pkg.description}
                 features={pkg.features}
                 highlighted={pkg.highlighted}
                 index={index}
               />
             ))}
-          </div>
-
-          {/* Disclaimer */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="text-center text-sm text-text-muted mt-8"
-          >
-            Disclaimer: The pricing is not inclusive of ad budget
-          </motion.p>
-        </div>
+          </div></div>
       </Section>
 
       {/* Why These Packages Work */}
@@ -125,7 +110,7 @@ export default function PackagesPage() {
               </h3>
               <p className="text-text-secondary leading-relaxed">
                 A comprehensive digital takeover. This package utilizes every tool
-                in our arsenal—from high-volume video content to aggressive ad
+                in our arsenalâ€”from high-volume video content to aggressive ad
                 targeting across multiple platforms.
               </p>
             </motion.div>
@@ -159,3 +144,4 @@ export default function PackagesPage() {
     </main>
   );
 }
+

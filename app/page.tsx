@@ -25,7 +25,9 @@ import { ServiceRow } from "@/components/service-row";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { FAQItem } from "@/components/faq-item";
 import { StatsCounter } from "@/components/stats-counter";
+import { CreatorSpotlight } from "@/components/creator-spotlight";
 import { ClientWrapper } from "@/components/client-wrapper";
+import { heroVideos } from "@/lib/creator";
 import {
   heroContent,
   services,
@@ -51,7 +53,7 @@ export default function HomePage() {
         {/* Section 1: Hero with Video Background - Mobile Optimized */}
         <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
           {/* Video Background */}
-          <VideoHero />
+          <VideoHero videos={heroVideos.length > 0 ? heroVideos : undefined} />
 
           {/* Content - Responsive sizing and spacing */}
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -387,8 +389,23 @@ export default function HomePage() {
 
         {/* Stats Section */}
         <Section className="bg-surface py-16 sm:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center md:text-left"
+            >
+              <SectionHeading size="xl" className="text-2xl sm:text-3xl">
+                Real reach. Real numbers.
+              </SectionHeading>
+              <SectionSubtitle className="mt-2">
+                Live TikTok stats from founder Paki Lawu&apos;s creator channel.
+              </SectionSubtitle>
+            </motion.div>
             <StatsCounter />
+            <CreatorSpotlight />
           </div>
         </Section>
 

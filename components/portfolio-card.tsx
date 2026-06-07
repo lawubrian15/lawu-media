@@ -10,6 +10,9 @@ interface PortfolioCardProps {
   description: string;
   results: string[];
   index: number;
+  videoSrc?: string;
+  videoViews?: string;
+  tiktokUrl?: string;
 }
 
 export function PortfolioCard({
@@ -18,6 +21,9 @@ export function PortfolioCard({
   description,
   results,
   index,
+  videoSrc,
+  videoViews,
+  tiktokUrl,
 }: PortfolioCardProps) {
   return (
     <motion.div
@@ -27,6 +33,37 @@ export function PortfolioCard({
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group bg-surface border border-border rounded-2xl overflow-hidden hover:border-accent/30 transition-all duration-300"
     >
+      {videoSrc && (
+        <div className="relative aspect-[9/16] max-h-72 overflow-hidden border-b border-border bg-background">
+          <video
+            src={videoSrc}
+            className="h-full w-full object-cover"
+            muted
+            loop
+            playsInline
+            autoPlay
+            preload="metadata"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+          {videoViews && (
+            <span className="absolute bottom-3 left-3 rounded-full bg-background/80 px-3 py-1 text-xs font-medium text-accent backdrop-blur-sm">
+              {videoViews} TikTok views
+            </span>
+          )}
+          {tiktokUrl && (
+            <a
+              href={tiktokUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute right-3 top-3 rounded-full bg-background/80 p-2 text-text-secondary backdrop-blur-sm transition-colors hover:text-accent"
+              aria-label={`Watch ${client} campaign on TikTok`}
+            >
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          )}
+        </div>
+      )}
+
       {/* Header */}
       <div className="p-6 md:p-8 border-b border-border">
         <div className="flex items-start justify-between mb-4">

@@ -8,6 +8,7 @@ import { Button } from "@/components/button";
 import { PortfolioCard } from "@/components/portfolio-card";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { portfolioItems, testimonials } from "@/lib/data";
+import { formatViewCount, getPortfolioVideo } from "@/lib/creator";
 
 export default function PortfolioPage() {
   return (
@@ -85,16 +86,26 @@ export default function PortfolioPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {portfolioItems.map((item, index) => (
-              <PortfolioCard
-                key={item.id}
-                client={item.client}
-                category={item.category}
-                description={item.description}
-                results={item.results}
-                index={index}
-              />
-            ))}
+            {portfolioItems.map((item, index) => {
+              const campaignVideo = getPortfolioVideo(item.id);
+              return (
+                <PortfolioCard
+                  key={item.id}
+                  client={item.client}
+                  category={item.category}
+                  description={item.description}
+                  results={item.results}
+                  index={index}
+                  videoSrc={campaignVideo?.localPath}
+                  videoViews={
+                    campaignVideo
+                      ? formatViewCount(campaignVideo.viewCount)
+                      : undefined
+                  }
+                  tiktokUrl={campaignVideo?.url}
+                />
+              );
+            })}
           </div>
         </div>
       </Section>

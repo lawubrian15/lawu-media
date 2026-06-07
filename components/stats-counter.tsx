@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { stats } from "@/lib/data";
+import { creatorStats } from "@/lib/creator";
 
 function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -46,7 +46,7 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
 export function StatsCounter() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-      {stats.map((stat, index) => (
+      {creatorStats.map((stat, index) => (
         <motion.div
           key={stat.label}
           initial={{ opacity: 0, y: 30 }}
