@@ -6,18 +6,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { portfolioItems } from "@/lib/data";
-import { downloadedBrandVideos, formatViewCount } from "@/lib/creator";
+import { formatViewCount, getBrandVideo } from "@/lib/creator";
+import { getBrandLogo } from "@/lib/brands";
 import { cn } from "@/lib/utils";
 import { RevealText, RevealBlock, RevealLine } from "./reveal-text";
-
-const logoMap: Record<string, string> = {
-  Garnier: "/logos/garnierlogo.png",
-  CeraVe: "/logos/CERAVE.webp",
-  "Disney Plus": "/logos/disney3d.webp",
-  "Ocean Basket": "/logos/oceanbasket.png",
-  Zaio: "/logos/zaio.png",
-  "Campus Central": "/logos/param.png",
-};
 
 const partnerConfigs: Record<
   string,
@@ -47,13 +39,17 @@ const partnerConfigs: Record<
     accent: "from-purple-500/20 to-violet-600/10",
     glow: "group-hover:shadow-[0_0_40px_rgba(168,85,247,0.2)]",
   },
+  "Clover Tropika": {
+    accent: "from-sky-500/20 to-blue-600/10",
+    glow: "group-hover:shadow-[0_0_40px_rgba(56,189,248,0.25)]",
+  },
 };
 
 export function PartnershipEcosystem() {
   const [activePartner, setActivePartner] = useState(0);
   const partners = portfolioItems;
   const active = partners[activePartner];
-  const activeVideo = downloadedBrandVideos[active.id];
+  const activeVideo = getBrandVideo(active.id);
   const config = partnerConfigs[active.client] ?? {
     accent: "from-accent/20 to-accent/5",
     glow: "group-hover:shadow-[0_0_40px_rgba(0,229,255,0.2)]",
@@ -98,11 +94,11 @@ export function PartnershipEcosystem() {
 
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           {/* Logo constellation */}
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 sm:gap-4">
             {partners.map((partner, index) => {
               const isActive = index === activePartner;
               const cfg = partnerConfigs[partner.client] ?? partnerConfigs.Garnier;
-              const video = downloadedBrandVideos[partner.id];
+              const video = getBrandVideo(partner.id);
 
               return (
                 <motion.button
@@ -128,7 +124,7 @@ export function PartnershipEcosystem() {
                 >
                   <div className="relative h-12 w-full sm:h-14">
                     <Image
-                      src={logoMap[partner.client] ?? "/logos/garnierlogo.png"}
+                      src={getBrandLogo(partner.client)}
                       alt={partner.client}
                       fill
                       className={cn(
@@ -138,11 +134,15 @@ export function PartnershipEcosystem() {
                       sizes="120px"
                     />
                   </div>
-                  {video && (
+                  {video?.viewCount ? (
                     <span className="mt-2 text-[10px] font-medium text-accent/80">
                       {formatViewCount(video.viewCount)}
                     </span>
-                  )}
+                  ) : video?.source === "campaign" ? (
+                    <span className="mt-2 text-[10px] font-medium text-accent/80">
+                      Campaign reel
+                    </span>
+                  ) : null}
                   {isActive && (
                     <motion.div
                       layoutId="partner-ring"
@@ -198,17 +198,21 @@ export function PartnershipEcosystem() {
                   ))}
                 </div>
 
-                {activeVideo && (
+                {activeVideo?.localPath && (
                   <div className="mt-8 flex items-center gap-4 rounded-xl border border-accent/20 bg-accent/5 px-5 py-4">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-background">
                       <ArrowUpRight className="h-4 w-4" />
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-wider text-text-muted">
-                        Live campaign reel
+                        {activeVideo.source === "campaign"
+                          ? "Campaign reel"
+                          : "Live campaign reel"}
                       </p>
                       <p className="text-sm font-medium text-accent">
-                        {formatViewCount(activeVideo.viewCount)} TikTok views
+                        {activeVideo.viewCount
+                          ? `${formatViewCount(activeVideo.viewCount)} TikTok views`
+                          : "Provided campaign footage"}
                       </p>
                     </div>
                     {activeVideo.url && (

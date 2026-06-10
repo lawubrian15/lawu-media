@@ -25,16 +25,36 @@
       "label": "Videos Created"
     },
     {
-      "value": 6,
+      "value": 20,
       "suffix": "",
       "label": "Brand Partners"
     }
   ],
+  "campaignVideos": {
+    "disney-plus": {
+      "brandId": "disney-plus",
+      "localPath": "/videos/brands/disney-plus/campaign.mp4",
+      "title": "Disney Plus Campaign",
+      "source": "campaign"
+    },
+    "ocean-basket": {
+      "brandId": "ocean-basket",
+      "localPath": "/videos/brands/ocean-basket/campaign.mp4",
+      "title": "Ocean Basket Campaign",
+      "source": "campaign"
+    },
+    "tropika-clover": {
+      "brandId": "tropika-clover",
+      "localPath": "/videos/brands/tropika-clover/campaign.mp4",
+      "title": "Clover Tropika Campaign",
+      "source": "campaign"
+    }
+  },
   "brandVideos": {
     "cerave": [
       {
         "id": "7612597402675072277",
-        "title": "Spent the weekend at the CeraVe ZA � Takealot pop-up in Midrand and h...",
+        "title": "Spent the weekend at the CeraVe ZA Takealot pop-up in Midrand and h...",
         "viewCount": 7330,
         "likeCount": 377,
         "uploadDate": "20260302",
@@ -60,61 +80,16 @@
         "uploadDate": "20250514",
         "url": "https://www.tiktok.com/@pakilawu_/video/7504182465032965431",
         "brandId": "disney-plus"
-      },
-      {
-        "id": "7586966068774718741",
-        "title": "One buzzer and suddenly it�s war  Watch the full Disney+ Streaming...",
-        "viewCount": 17800,
-        "likeCount": 2699,
-        "uploadDate": "20251223",
-        "url": "https://www.tiktok.com/@pakilawu_/video/7586966068774718741",
-        "brandId": "disney-plus"
-      },
-      {
-        "id": "7503975667185241399",
-        "title": "Check out the secret lives of Mormon wives #disneyplusza #pakilawu ",
-        "viewCount": 16200,
-        "likeCount": 387,
-        "uploadDate": "20250513",
-        "url": "https://www.tiktok.com/@pakilawu_/video/7503975667185241399",
-        "brandId": "disney-plus"
-      },
-      {
-        "id": "7639024790203862293",
-        "title": "Disney+ really came through with the ultimate surprise  They sent u...",
-        "viewCount": 9665,
-        "likeCount": 513,
-        "uploadDate": "20260512",
-        "url": "https://www.tiktok.com/@pakilawu_/video/7639024790203862293",
-        "brandId": "disney-plus"
-      },
-      {
-        "id": "7571895005141306642",
-        "title": "Pick your crew and get ready to binge!  Drop a comment using #Disney...",
-        "viewCount": 2799,
-        "likeCount": 180,
-        "uploadDate": "20251112",
-        "url": "https://www.tiktok.com/@pakilawu_/video/7571895005141306642",
-        "brandId": "disney-plus"
       }
     ],
     "ocean-basket": [
       {
         "id": "7530188084911115525",
-        "title": "Just touched down in Menlyn � the OG home of Ocean Basket � to celebr...",
+        "title": "Just touched down in Menlyn the OG home of Ocean Basket to celebr...",
         "viewCount": 493000,
         "likeCount": 881,
         "uploadDate": "20250723",
         "url": "https://www.tiktok.com/@pakilawu_/video/7530188084911115525",
-        "brandId": "ocean-basket"
-      },
-      {
-        "id": "7578519418842434837",
-        "title": "Ocean basket thank you for having us @Tumi Moliko @Lerato Nkabinde @O...",
-        "viewCount": 12800,
-        "likeCount": 783,
-        "uploadDate": "20251130",
-        "url": "https://www.tiktok.com/@pakilawu_/video/7578519418842434837",
         "brandId": "ocean-basket"
       }
     ]
@@ -122,7 +97,7 @@
   "downloaded": {
     "cerave": {
       "id": "7612597402675072277",
-      "title": "Spent the weekend at the CeraVe ZA � Takealot pop-up in Midrand and h...",
+      "title": "Spent the weekend at the CeraVe ZA Takealot pop-up in Midrand and h...",
       "viewCount": 7330,
       "likeCount": 377,
       "uploadDate": "20260302",
@@ -142,7 +117,7 @@
     },
     "ocean-basket": {
       "id": "7530188084911115525",
-      "title": "Just touched down in Menlyn � the OG home of Ocean Basket � to celebr...",
+      "title": "Just touched down in Menlyn the OG home of Ocean Basket to celebr...",
       "viewCount": 493000,
       "likeCount": 881,
       "uploadDate": "20250723",
@@ -153,12 +128,20 @@
   },
   "heroVideos": [
     {
-      "src": "/videos/brands/disney-plus/7504182465032965431.mp4",
+      "src": "/videos/brands/disney-plus/campaign.mp4",
       "label": "Disney Plus Campaign"
     },
     {
-      "src": "/videos/brands/ocean-basket/7530188084911115525.mp4",
+      "src": "/videos/brands/ocean-basket/campaign.mp4",
       "label": "Ocean Basket Campaign"
+    },
+    {
+      "src": "/videos/brands/tropika-clover/campaign.mp4",
+      "label": "Clover Tropika Campaign"
+    },
+    {
+      "src": "/videos/brands/cerave/7612597402675072277.mp4",
+      "label": "CeraVe Campaign"
     }
   ],
   "scannedVideoCount": 500,

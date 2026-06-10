@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { portfolioItems } from "@/lib/data";
+import { getBrandLogo } from "@/lib/brands";
 import { cn } from "@/lib/utils";
 
 // Logo data with 3D styling configurations
@@ -344,16 +345,6 @@ function Logo3D({ src, alt, index, brandStory }: Logo3DProps) {
   );
 }
 
-// Map portfolio items to logo paths
-const logoMap: Record<string, string> = {
-  Garnier: "/logos/garnierlogo.png",
-  CeraVe: "/logos/CERAVE.webp",
-  "Disney Plus": "/logos/disney3d.webp",
-  "Ocean Basket": "/logos/oceanbasket.png",
-  Zaio: "/logos/zaio.png",
-  "Campus Central": "/logos/CampusCentral.avif",
-};
-
 export function Logo3DBanner() {
   return (
     <section className="relative py-16 sm:py-20 md:py-28 overflow-hidden">
@@ -387,7 +378,7 @@ export function Logo3DBanner() {
           {portfolioItems.map((item, index) => (
             <Logo3D
               key={item.id}
-              src={logoMap[item.client] || "/logos/default.png"}
+              src={getBrandLogo(item.client)}
               alt={item.client}
               index={index}
               brandStory={{

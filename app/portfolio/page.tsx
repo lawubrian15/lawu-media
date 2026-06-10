@@ -125,9 +125,11 @@ export default function PortfolioPage() {
                   index={index}
                   videoSrc={campaignVideo?.localPath}
                   videoViews={
-                    campaignVideo
+                    campaignVideo?.viewCount
                       ? formatViewCount(campaignVideo.viewCount)
-                      : undefined
+                      : campaignVideo?.source === "campaign"
+                        ? "Campaign reel"
+                        : undefined
                   }
                   tiktokUrl={campaignVideo?.url}
                 />

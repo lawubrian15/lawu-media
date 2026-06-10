@@ -6,21 +6,13 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowUpRight, ChevronLeft, ChevronRight, Play, Volume2, VolumeX } from "lucide-react";
 import { portfolioItems } from "@/lib/data";
 import {
-  downloadedBrandVideos,
   formatViewCount,
+  getPortfolioVideo,
   type BrandVideo,
 } from "@/lib/creator";
+import { getBrandLogo } from "@/lib/brands";
 import { cn } from "@/lib/utils";
 import { RevealText, RevealLine } from "./reveal-text";
-
-const logoMap: Record<string, string> = {
-  Garnier: "/logos/garnierlogo.png",
-  CeraVe: "/logos/CERAVE.webp",
-  "Disney Plus": "/logos/disney3d.webp",
-  "Ocean Basket": "/logos/oceanbasket.png",
-  Zaio: "/logos/zaio.png",
-  "Campus Central": "/logos/param.png",
-};
 
 type ReelItem = {
   id: string;
@@ -35,7 +27,7 @@ type ReelItem = {
 function buildReelItems(): ReelItem[] {
   return portfolioItems
     .map((item) => {
-      const video = downloadedBrandVideos[item.id];
+      const video = getPortfolioVideo(item.id);
       return {
         id: item.id,
         client: item.client,
@@ -43,10 +35,10 @@ function buildReelItems(): ReelItem[] {
         description: item.description,
         results: item.results,
         video,
-        logo: logoMap[item.client] ?? "/logos/garnierlogo.png",
+        logo: getBrandLogo(item.client),
       };
     })
-    .filter((item) => item.video);
+    .filter((item) => item.video?.localPath);
 }
 
 const reelItems = buildReelItems();
@@ -81,7 +73,7 @@ function ReelVideo({
       loop
       playsInline
       preload="metadata"
-      className="h-full w-full object-cover"
+      className="h-full w-full object-contain bg-background"
     />
   );
 }
@@ -185,7 +177,7 @@ function DesktopReelShowcase() {
                       >
                         {active.client}
                       </motion.h3>
-                      {active.video && (
+                      {active.video?.viewCount ? (
                         <motion.p
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
@@ -194,7 +186,16 @@ function DesktopReelShowcase() {
                         >
                           {formatViewCount(active.video.viewCount)} TikTok views
                         </motion.p>
-                      )}
+                      ) : active.video?.source === "campaign" ? (
+                        <motion.p
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.15 }}
+                          className="mt-2 text-sm text-text-secondary"
+                        >
+                          Campaign footage
+                        </motion.p>
+                      ) : null}
                     </div>
                     <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-2 backdrop-blur-md">
                       <Image
@@ -327,11 +328,13 @@ function DesktopReelShowcase() {
                       <p className="truncate text-base font-semibold text-text-primary">
                         {item.client}
                       </p>
-                      {item.video && (
+                      {item.video?.viewCount ? (
                         <p className="text-xs text-accent">
                           {formatViewCount(item.video.viewCount)} views
                         </p>
-                      )}
+                      ) : item.video?.source === "campaign" ? (
+                        <p className="text-xs text-accent">Campaign reel</p>
+                      ) : null}
                     </div>
 
                     <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-white/5 p-1">
@@ -407,14 +410,18 @@ function MobileReelStack() {
                 playsInline
                 autoPlay
                 preload="metadata"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain bg-background"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-              {item.video && (
+              {item.video?.viewCount ? (
                 <span className="absolute bottom-3 left-3 rounded-full bg-background/80 px-3 py-1 text-xs font-medium text-accent backdrop-blur-sm">
                   {formatViewCount(item.video.viewCount)} views
                 </span>
-              )}
+              ) : item.video?.source === "campaign" ? (
+                <span className="absolute bottom-3 left-3 rounded-full bg-background/80 px-3 py-1 text-xs font-medium text-accent backdrop-blur-sm">
+                  Campaign reel
+                </span>
+              ) : null}
             </div>
           )}
           <div className="p-5">

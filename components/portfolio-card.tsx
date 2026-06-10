@@ -37,7 +37,7 @@ export function PortfolioCard({
         <div className="relative aspect-[9/16] max-h-72 overflow-hidden border-b border-border bg-background">
           <video
             src={videoSrc}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-contain"
             muted
             loop
             playsInline

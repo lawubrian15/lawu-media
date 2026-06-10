@@ -26,19 +26,45 @@ export const heroContent = {
 export const clients = [
   { name: "Garnier", category: "Beauty & Skincare" },
   { name: "CeraVe", category: "Beauty & Skincare" },
+  { name: "Naked", category: "Beauty & Skincare" },
   { name: "Disney Plus", category: "Entertainment" },
+  { name: "Universal Music Group", category: "Entertainment" },
   { name: "Ocean Basket", category: "Food & Hospitality" },
+  { name: "Clover Tropika", category: "Food & Beverage" },
+  { name: "Milo", category: "Food & Beverage" },
+  { name: "Checkers Sixty60", category: "Retail & Grocery" },
+  { name: "Mr Price", category: "Retail" },
+  { name: "WesBank", category: "Finance" },
+  { name: "PayShap", category: "Finance" },
   { name: "Zaio", category: "EdTech" },
   { name: "Campus Central", category: "Student Housing" },
+  { name: "Kena Health", category: "Health & Wellness" },
+  { name: "Emeris", category: "Lifestyle" },
+  { name: "Thooto", category: "Technology" },
+  { name: "Psang Feelz", category: "Consumer Goods" },
+  { name: "Let's Stop", category: "Social Impact" },
 ];
 
 export const clientLogos = [
   { name: "Garnier", initials: "GR" },
   { name: "CeraVe", initials: "CV" },
+  { name: "Naked", initials: "NK" },
   { name: "Disney Plus", initials: "DP" },
+  { name: "Universal Music Group", initials: "UM" },
   { name: "Ocean Basket", initials: "OB" },
+  { name: "Clover Tropika", initials: "CT" },
+  { name: "Milo", initials: "ML" },
+  { name: "Checkers Sixty60", initials: "C6" },
+  { name: "Mr Price", initials: "MP" },
+  { name: "WesBank", initials: "WB" },
+  { name: "PayShap", initials: "PS" },
   { name: "Zaio", initials: "ZA" },
   { name: "Campus Central", initials: "CC" },
+  { name: "Kena Health", initials: "KH" },
+  { name: "Emeris", initials: "EM" },
+  { name: "Thooto", initials: "TH" },
+  { name: "Psang Feelz", initials: "PF" },
+  { name: "Let's Stop", initials: "LS" },
 ];
 
 export const expertiseTags = [
@@ -427,22 +453,6 @@ export const packages = [
 
 export const portfolioItems = [
   {
-    id: "garnier",
-    client: "Garnier",
-    category: "Beauty & Skincare",
-    description:
-      "High-reach beauty and skincare influencer campaigns that connected the brand with authentic voices in the South African market.",
-    results: ["2.5M+ Impressions", "150+ Creator Partnerships", "4.8% Engagement Rate"],
-  },
-  {
-    id: "cerave",
-    client: "CeraVe",
-    category: "Beauty & Skincare",
-    description:
-      "Skincare-focused creator campaigns designed to build education, trust, and consideration across digital channels.",
-    results: ["Beauty Creator Network", "Skincare Education", "Audience Trust Built"],
-  },
-  {
     id: "disney-plus",
     client: "Disney Plus",
     category: "Entertainment",
@@ -459,6 +469,86 @@ export const portfolioItems = [
     results: ["180K New Followers", "25% Increase in Foot Traffic", "3M+ Impressions"],
   },
   {
+    id: "tropika-clover",
+    client: "Clover Tropika",
+    category: "Food & Beverage",
+    description:
+      "Summer-forward creator content celebrating Clover Tropika with vibrant, scroll-stopping storytelling.",
+    results: ["Campaign Reel", "Creator-Led UGC", "Brand Awareness"],
+  },
+  {
+    id: "cerave",
+    client: "CeraVe",
+    category: "Beauty & Skincare",
+    description:
+      "Skincare-focused creator campaigns designed to build education, trust, and consideration across digital channels.",
+    results: ["Beauty Creator Network", "Skincare Education", "Audience Trust Built"],
+  },
+  {
+    id: "garnier",
+    client: "Garnier",
+    category: "Beauty & Skincare",
+    description:
+      "High-reach beauty and skincare influencer campaigns that connected the brand with authentic voices in the South African market.",
+    results: ["2.5M+ Impressions", "150+ Creator Partnerships", "4.8% Engagement Rate"],
+  },
+  {
+    id: "naked",
+    client: "Naked",
+    category: "Beauty & Skincare",
+    description:
+      "Creator-led campaigns building product discovery and trial for a challenger beauty brand.",
+    results: ["UGC Content", "Creator Partnerships", "Social Reach"],
+  },
+  {
+    id: "universal-music-group",
+    client: "Universal Music Group",
+    category: "Entertainment",
+    description:
+      "Music and culture campaigns connecting artists, releases, and fan communities across digital platforms.",
+    results: ["Artist Amplification", "Release Campaigns", "Fan Engagement"],
+  },
+  {
+    id: "milo",
+    client: "Milo",
+    category: "Food & Beverage",
+    description:
+      "Family-focused content celebrating energy, sport, and everyday moments with a beloved household brand.",
+    results: ["Family Reach", "Seasonal Campaigns", "Community Content"],
+  },
+  {
+    id: "checkers-sixty60",
+    client: "Checkers Sixty60",
+    category: "Retail & Grocery",
+    description:
+      "Fast-paced retail storytelling for on-demand grocery delivery built for mobile-first South African shoppers.",
+    results: ["Delivery Awareness", "App Engagement", "Local Reach"],
+  },
+  {
+    id: "mr-price",
+    client: "Mr Price",
+    category: "Retail",
+    description:
+      "Trend-led fashion and value retail campaigns connecting style, affordability, and creator culture.",
+    results: ["Retail Awareness", "Style Content", "Youth Reach"],
+  },
+  {
+    id: "wesbank",
+    client: "WesBank",
+    category: "Finance",
+    description:
+      "Accessible finance messaging delivered through trusted creator voices and relatable storytelling.",
+    results: ["Brand Trust", "Educational Content", "Audience Reach"],
+  },
+  {
+    id: "payshap",
+    client: "PayShap",
+    category: "Finance",
+    description:
+      "Payments innovation campaigns explaining instant, simple transfers to everyday South African consumers.",
+    results: ["Product Education", "Digital Adoption", "Creator Explainers"],
+  },
+  {
     id: "zaio",
     client: "Zaio",
     category: "EdTech",
@@ -473,6 +563,46 @@ export const portfolioItems = [
     description:
       "Targeted lead generation for student accommodation across major South African universities.",
     results: ["500+ Qualified Leads", "85% Occupancy Rate", "2M+ Student Reach"],
+  },
+  {
+    id: "kena-health",
+    client: "Kena Health",
+    category: "Health & Wellness",
+    description:
+      "Healthcare access campaigns making digital care feel approachable, affordable, and human.",
+    results: ["Health Awareness", "App Discovery", "Trusted Voices"],
+  },
+  {
+    id: "emeris",
+    client: "Emeris",
+    category: "Lifestyle",
+    description:
+      "Lifestyle brand storytelling with premium visual identity and creator-native content formats.",
+    results: ["Brand Positioning", "Creator Content", "Audience Growth"],
+  },
+  {
+    id: "thooto",
+    client: "Thooto",
+    category: "Technology",
+    description:
+      "Tech product campaigns translating features into benefits through authentic creator demonstrations.",
+    results: ["Product Education", "Creator Reviews", "Digital Reach"],
+  },
+  {
+    id: "psang-feelz",
+    client: "Psang Feelz",
+    category: "Consumer Goods",
+    description:
+      "Bold, culture-forward campaigns for a youth-centric consumer brand with strong social presence.",
+    results: ["Youth Engagement", "Creator Collabs", "Brand Visibility"],
+  },
+  {
+    id: "lets-stop",
+    client: "Let's Stop",
+    category: "Social Impact",
+    description:
+      "Purpose-driven advocacy content mobilizing communities around social change and awareness.",
+    results: ["Advocacy Reach", "Community Action", "Impact Storytelling"],
   },
 ];
 
@@ -529,7 +659,7 @@ export const navLinks = {
 export const stats = [
   { value: 50, suffix: "+", label: "Campaigns Delivered" },
   { value: 2.5, suffix: "M+", label: "Impressions Generated" },
-  { value: 6, suffix: "", label: "Brand Partners" },
+  { value: 19, suffix: "", label: "Brand Partners" },
   { value: 340, suffix: "%", label: "Avg. ROI Increase" },
 ];
 

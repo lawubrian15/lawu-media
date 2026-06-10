@@ -6,6 +6,7 @@ import {
   creatorProfile,
   lastSyncedAt,
   formatViewCount,
+  campaignVideos,
   downloadedBrandVideos,
 } from "@/lib/creator";
 
@@ -15,7 +16,8 @@ export function CreatorSpotlight() {
     day: "numeric",
     year: "numeric",
   });
-  const campaignCount = Object.keys(downloadedBrandVideos).length;
+  const campaignCount =
+    Object.keys(campaignVideos).length + Object.keys(downloadedBrandVideos).length;
 
   return (
     <motion.div
@@ -71,12 +73,13 @@ export function CreatorSpotlight() {
 
       <p className="relative mt-4 text-xs text-text-muted">
         TikTok stats last synced {syncedDate}
-        {campaignCount > 0 &&
-          ` · Top campaign reel: ${formatViewCount(
-            Math.max(
-              ...Object.values(downloadedBrandVideos).map((v) => v.viewCount)
-            )
-          )} views`}
+        {campaignCount > 0 && (() => {
+          const viewCounts = Object.values(downloadedBrandVideos)
+            .map((v) => v.viewCount)
+            .filter((count): count is number => typeof count === "number");
+          if (viewCounts.length === 0) return null;
+          return ` · Top campaign reel: ${formatViewCount(Math.max(...viewCounts))} views`;
+        })()}
       </p>
     </motion.div>
   );
