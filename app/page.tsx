@@ -53,12 +53,12 @@ export default function HomePage() {
         <Navbar />
 
         {/* Section 1: Hero with Video Background - Mobile Optimized */}
-        <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
+        <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden pb-28 sm:pb-0">
           {/* Video Background */}
           <VideoHero videos={heroVideos.length > 0 ? heroVideos : undefined} />
 
           {/* Content - Responsive sizing and spacing */}
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="relative z-10 mx-auto max-w-7xl px-4 pb-4 text-center sm:px-6 sm:pb-0 lg:px-8">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -73,7 +73,7 @@ export default function HomePage() {
                 <RevealText
                   as="h1"
                   immediate
-                  className="font-editorial text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.05] tracking-tight mb-4 sm:mb-6 justify-center"
+                  className="font-editorial mb-3 justify-center text-[1.65rem] font-bold leading-[1.08] tracking-tight text-white sm:mb-6 sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl"
                 >
                   {heroContent.headline}
                 </RevealText>
@@ -84,7 +84,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-6 sm:mb-8 px-2 sm:px-0"
+              className="mx-auto mb-5 max-w-3xl px-1 text-sm text-white/90 sm:mb-8 sm:px-0 sm:text-lg md:text-xl lg:text-2xl"
               style={{ 
                 textShadow: "0 2px 20px rgba(0,0,0,0.4)"
               }}
@@ -135,12 +135,12 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          {/* Scroll indicator - Mobile optimized */}
+          {/* Scroll indicator — hidden on mobile where reel switcher + sticky bar compete */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 1 }}
-            className="absolute bottom-24 sm:bottom-8 left-1/2 -translate-x-1/2 z-10"
+            className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 sm:block"
           >
             <motion.div
               animate={{ y: [0, 10, 0] }}
@@ -152,16 +152,16 @@ export default function HomePage() {
           </motion.div>
         </section>
 
-        {/* Section 2: Partnership Ecosystem */}
-        <PartnershipEcosystem />
+        {/* Section 2: Partnership Ecosystem — curated flagship partners */}
+        <PartnershipEcosystem featuredOnly limit={8} showPortfolioCta />
 
-        {/* Section 2b: Premium Reel Showcase */}
-        <ReelShowcase />
+        {/* Section 2b: Premium Reel Showcase — featured reels only on landing */}
+        <ReelShowcase featuredOnly limit={6} />
 
         {/* Section 3: Expertise Marquee + CTA */}
-        <Section className="py-16 sm:py-24 md:py-32">
+        <Section className="py-section" noPadding>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center mb-8 sm:mb-12">
+            <div className="mb-8 grid items-center gap-6 sm:mb-12 sm:gap-8 lg:grid-cols-2 lg:gap-20">
               <RevealBlock>
                 <RevealText
                   as="h2"
@@ -649,12 +649,13 @@ export default function HomePage() {
           </div>
         </Section>
 
-        {/* Mobile sticky conversion bar */}
+        {/* Mobile sticky conversion bar — sits above safe area */}
         <motion.div
           initial={{ y: 120, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 1.2 }}
-          className="fixed inset-x-3 bottom-3 z-40 rounded-2xl border border-white/10 bg-background/90 p-2 shadow-2xl backdrop-blur-xl md:hidden"
+          className="fixed inset-x-3 bottom-3 z-40 rounded-2xl border border-white/10 bg-background/90 p-2.5 shadow-2xl backdrop-blur-xl md:hidden"
+          style={{ paddingBottom: "max(0.5rem, env(safe-area-inset-bottom))" }}
         >
           <div className="flex items-center gap-2">
             <div className="min-w-0 flex-1 px-2">

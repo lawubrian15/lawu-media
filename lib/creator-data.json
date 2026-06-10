@@ -25,7 +25,7 @@
       "label": "Videos Created"
     },
     {
-      "value": 20,
+      "value": 18,
       "suffix": "",
       "label": "Brand Partners"
     }
@@ -51,26 +51,6 @@
     }
   },
   "brandVideos": {
-    "cerave": [
-      {
-        "id": "7612597402675072277",
-        "title": "Spent the weekend at the CeraVe ZA Takealot pop-up in Midrand and h...",
-        "viewCount": 7330,
-        "likeCount": 377,
-        "uploadDate": "20260302",
-        "url": "https://www.tiktok.com/@pakilawu_/video/7612597402675072277",
-        "brandId": "cerave"
-      },
-      {
-        "id": "7641264666441764117",
-        "title": "Had such a great time @CeraVe #pakilawu #publicinterview ",
-        "viewCount": 2518,
-        "likeCount": 168,
-        "uploadDate": "20260518",
-        "url": "https://www.tiktok.com/@pakilawu_/video/7641264666441764117",
-        "brandId": "cerave"
-      }
-    ],
     "disney-plus": [
       {
         "id": "7504182465032965431",
@@ -95,16 +75,6 @@
     ]
   },
   "downloaded": {
-    "cerave": {
-      "id": "7612597402675072277",
-      "title": "Spent the weekend at the CeraVe ZA Takealot pop-up in Midrand and h...",
-      "viewCount": 7330,
-      "likeCount": 377,
-      "uploadDate": "20260302",
-      "url": "https://www.tiktok.com/@pakilawu_/video/7612597402675072277",
-      "brandId": "cerave",
-      "localPath": "/videos/brands/cerave/7612597402675072277.mp4"
-    },
     "disney-plus": {
       "id": "7504182465032965431",
       "title": "Make sure to check out the secret lives of Mormon wives on Disney plu...",
@@ -138,10 +108,6 @@
     {
       "src": "/videos/brands/tropika-clover/campaign.mp4",
       "label": "Clover Tropika Campaign"
-    },
-    {
-      "src": "/videos/brands/cerave/7612597402675072277.mp4",
-      "label": "CeraVe Campaign"
     }
   ],
   "scannedVideoCount": 500,

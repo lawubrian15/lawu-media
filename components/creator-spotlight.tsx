@@ -5,7 +5,6 @@ import { ExternalLink } from "lucide-react";
 import {
   creatorProfile,
   lastSyncedAt,
-  formatViewCount,
   campaignVideos,
   downloadedBrandVideos,
 } from "@/lib/creator";
@@ -73,13 +72,6 @@ export function CreatorSpotlight() {
 
       <p className="relative mt-4 text-xs text-text-muted">
         TikTok stats last synced {syncedDate}
-        {campaignCount > 0 && (() => {
-          const viewCounts = Object.values(downloadedBrandVideos)
-            .map((v) => v.viewCount)
-            .filter((count): count is number => typeof count === "number");
-          if (viewCounts.length === 0) return null;
-          return ` · Top campaign reel: ${formatViewCount(Math.max(...viewCounts))} views`;
-        })()}
       </p>
     </motion.div>
   );

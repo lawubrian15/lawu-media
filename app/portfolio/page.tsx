@@ -12,7 +12,7 @@ import { PortfolioCard } from "@/components/portfolio-card";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { RevealText, RevealBlock, RevealLine } from "@/components/reveal-text";
 import { portfolioItems, testimonials } from "@/lib/data";
-import { formatViewCount, getPortfolioVideo } from "@/lib/creator";
+import { getPortfolioVideo } from "@/lib/creator";
 import { ClientWrapper } from "@/components/client-wrapper";
 
 export default function PortfolioPage() {
@@ -124,13 +124,6 @@ export default function PortfolioPage() {
                   results={item.results}
                   index={index}
                   videoSrc={campaignVideo?.localPath}
-                  videoViews={
-                    campaignVideo?.viewCount
-                      ? formatViewCount(campaignVideo.viewCount)
-                      : campaignVideo?.source === "campaign"
-                        ? "Campaign reel"
-                        : undefined
-                  }
                   tiktokUrl={campaignVideo?.url}
                 />
               );

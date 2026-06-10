@@ -41,7 +41,6 @@ export const clients = [
   { name: "Kena Health", category: "Health & Wellness" },
   { name: "Emeris", category: "Lifestyle" },
   { name: "Thooto", category: "Technology" },
-  { name: "Psang Feelz", category: "Consumer Goods" },
   { name: "Let's Stop", category: "Social Impact" },
 ];
 
@@ -63,7 +62,6 @@ export const clientLogos = [
   { name: "Kena Health", initials: "KH" },
   { name: "Emeris", initials: "EM" },
   { name: "Thooto", initials: "TH" },
-  { name: "Psang Feelz", initials: "PF" },
   { name: "Let's Stop", initials: "LS" },
 ];
 
@@ -589,14 +587,6 @@ export const portfolioItems = [
     results: ["Product Education", "Creator Reviews", "Digital Reach"],
   },
   {
-    id: "psang-feelz",
-    client: "Psang Feelz",
-    category: "Consumer Goods",
-    description:
-      "Bold, culture-forward campaigns for a youth-centric consumer brand with strong social presence.",
-    results: ["Youth Engagement", "Creator Collabs", "Brand Visibility"],
-  },
-  {
     id: "lets-stop",
     client: "Let's Stop",
     category: "Social Impact",
@@ -605,6 +595,37 @@ export const portfolioItems = [
     results: ["Advocacy Reach", "Community Action", "Impact Storytelling"],
   },
 ];
+
+/** Flagship partners curated for the landing page - full list lives on /portfolio */
+export const featuredPartnerIds = [
+  "disney-plus",
+  "ocean-basket",
+  "garnier",
+  "tropika-clover",
+  "zaio",
+  "campus-central",
+  "milo",
+  "universal-music-group",
+] as const;
+
+export type PortfolioItem = (typeof portfolioItems)[number];
+
+export function getPartners(options?: {
+  featuredOnly?: boolean;
+  limit?: number;
+}): PortfolioItem[] {
+  let items: PortfolioItem[] = options?.featuredOnly
+    ? featuredPartnerIds
+        .map((id) => portfolioItems.find((item) => item.id === id))
+        .filter((item): item is PortfolioItem => item !== undefined)
+    : [...portfolioItems];
+
+  if (options?.limit && options.limit > 0) {
+    items = items.slice(0, options.limit);
+  }
+
+  return items;
+}
 
 export const navLinks = {
   main: [
@@ -659,7 +680,7 @@ export const navLinks = {
 export const stats = [
   { value: 50, suffix: "+", label: "Campaigns Delivered" },
   { value: 2.5, suffix: "M+", label: "Impressions Generated" },
-  { value: 19, suffix: "", label: "Brand Partners" },
+  { value: 18, suffix: "", label: "Brand Partners" },
   { value: 340, suffix: "%", label: "Avg. ROI Increase" },
 ];
 

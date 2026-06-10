@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { requestPlay, pauseVideo } from "@/lib/video-playback";
+import {
+  getBrandColorsForHero,
+  brandHeroActiveStyle,
+} from "@/lib/brand-colors";
 
 type HeroVideoSource = {
   src: string;
@@ -44,11 +49,10 @@ export function VideoHero({
         ];
 
   const [activeVideo, setActiveVideo] = useState(0);
-  const [videosLoaded, setVideosLoaded] = useState<boolean[]>(
-    () => new Array(sources.length).fill(false)
-  );
-  const [canPlay, setCanPlay] = useState(false);
+  const [activeLoaded, setActiveLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { amount: 0.15 });
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   useEffect(() => {
@@ -64,54 +68,51 @@ export function VideoHero({
   }, []);
 
   useEffect(() => {
-    setVideosLoaded(new Array(sources.length).fill(false));
     setActiveVideo(0);
-    setCanPlay(false);
+    setActiveLoaded(false);
   }, [sources.length]);
 
   useEffect(() => {
-    const checkVideos = async () => {
-      try {
-        const refs = videoRefs.current.filter(Boolean) as HTMLVideoElement[];
-        if (refs.length === 0) return;
+    const video = videoRefs.current[activeVideo];
+    if (!video) return;
 
-        await Promise.all(
-          refs.map(
-            (video) =>
-              new Promise<void>((resolve) => {
-                if (video.readyState >= 3) resolve();
-                else video.addEventListener("canplay", () => resolve(), { once: true });
-              })
-          )
-        );
-        setCanPlay(true);
-      } catch (err) {
-        console.log("Video load check:", err);
+    if (video.readyState >= 3) {
+      setActiveLoaded(true);
+      return;
+    }
+
+    const onReady = () => setActiveLoaded(true);
+    video.addEventListener("canplay", onReady, { once: true });
+    return () => video.removeEventListener("canplay", onReady);
+  }, [activeVideo, sources.length]);
+
+  useEffect(() => {
+    videoRefs.current.forEach((video, index) => {
+      if (!video) return;
+      if (index === activeVideo && activeLoaded && isInView) {
+        requestPlay(video).catch(() => {});
+      } else {
+        pauseVideo(video);
       }
-    };
-
-    checkVideos();
-  }, [sources.length]);
+    });
+  }, [activeVideo, activeLoaded, isInView]);
 
   useEffect(() => {
-    if (!canPlay || sources.length <= 1) return;
+    if (!activeLoaded || sources.length <= 1) return;
 
     const interval = setInterval(() => {
       setActiveVideo((prev) => (prev + 1) % sources.length);
     }, 30000);
 
     return () => clearInterval(interval);
-  }, [canPlay, sources.length]);
+  }, [activeLoaded, sources.length]);
 
-  const handleVideoLoaded = (index: number) => {
-    setVideosLoaded((prev) => {
-      const next = [...prev];
-      next[index] = true;
-      return next;
-    });
+  const getPreload = (index: number): "none" | "metadata" | "auto" => {
+    if (index === activeVideo) return isMobile ? "metadata" : "auto";
+    const nextIndex = (activeVideo + 1) % sources.length;
+    if (index === nextIndex) return "metadata";
+    return "none";
   };
-
-  const allLoaded = videosLoaded.every(Boolean);
 
   const videoStage = (
     <div className="absolute inset-0 flex items-center justify-center bg-background">
@@ -121,15 +122,15 @@ export function VideoHero({
           ref={(el) => {
             videoRefs.current[index] = el;
           }}
-          autoPlay
           muted
           loop
           playsInline
-          preload={isMobile ? "metadata" : "auto"}
-          onLoadedData={() => handleVideoLoaded(index)}
-          onCanPlay={() => handleVideoLoaded(index)}
+          preload={getPreload(index)}
+          onCanPlay={() => {
+            if (index === activeVideo) setActiveLoaded(true);
+          }}
           className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-1000 ${
-            activeVideo === index ? "opacity-100" : "opacity-0"
+            activeVideo === index ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
           style={{ willChange: "opacity" }}
         >
@@ -141,30 +142,42 @@ export function VideoHero({
 
   const switcher = (
     <div
-      className={`absolute left-1/2 z-30 flex max-w-[calc(100%-2rem)] -translate-x-1/2 flex-wrap items-center justify-center gap-2 ${
-        isMobile ? "bottom-6" : "bottom-8"
+      className={`absolute left-1/2 z-30 flex max-w-[calc(100%-1.5rem)] -translate-x-1/2 items-center justify-center gap-1.5 overflow-x-auto ${
+        isMobile ? "bottom-5 snap-carousel px-1" : "bottom-8 flex-wrap gap-2"
       }`}
     >
-      {sources.map((source, index) => (
+      {sources.map((source, index) => {
+        const brandColors = getBrandColorsForHero(source);
+        const isActive = activeVideo === index;
+
+        return (
         <button
           key={source.src}
           type="button"
           onClick={() => setActiveVideo(index)}
-          className={`rounded-full px-3 py-2 transition-all duration-300 sm:px-4 ${
-            activeVideo === index
-              ? "bg-accent text-background"
+          className={`tap-target shrink-0 rounded-full px-2.5 py-2 transition-all duration-300 sm:px-4 ${
+            isActive
+              ? ""
               : isMobile
                 ? "bg-background/70 text-text-secondary backdrop-blur-sm"
                 : "bg-background/50 text-text-secondary hover:bg-background/80"
           }`}
+          style={
+            isActive
+              ? brandHeroActiveStyle(brandColors)
+              : undefined
+          }
           aria-label={`Switch to ${source.label}`}
         >
           <span className="flex items-center gap-2">
             {!isMobile && (
               <span
-                className={`h-2 w-2 rounded-full ${
-                  activeVideo === index ? "bg-background" : "bg-text-secondary"
-                }`}
+                className="h-2 w-2 rounded-full"
+                style={
+                  isActive
+                    ? { backgroundColor: "#0A0A0A" }
+                    : { backgroundColor: "var(--text-secondary)" }
+                }
               />
             )}
             <span className="max-w-[9rem] truncate text-xs font-medium sm:max-w-none">
@@ -172,17 +185,18 @@ export function VideoHero({
             </span>
           </span>
         </button>
-      ))}
+        );
+      })}
     </div>
   );
 
   const loadingState = (
     <AnimatePresence>
-      {!allLoaded && (
+      {!activeLoaded && (
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.6 }}
           className="absolute inset-0 z-10"
         >
           <div className="absolute inset-0 bg-background">
@@ -195,6 +209,9 @@ export function VideoHero({
                 `,
               }}
             />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="h-10 w-10 animate-spin rounded-full border-2 border-accent/30 border-t-accent" />
+            </div>
           </div>
         </motion.div>
       )}
@@ -203,7 +220,7 @@ export function VideoHero({
 
   if (isMobile) {
     return (
-      <div className="absolute inset-0 overflow-hidden">
+      <div ref={containerRef} className="absolute inset-0 overflow-hidden">
         {loadingState}
         {videoStage}
         <div className="absolute inset-0 z-20 bg-background/40" />
@@ -214,7 +231,7 @@ export function VideoHero({
   }
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    <div ref={containerRef} className="absolute inset-0 overflow-hidden">
       {loadingState}
       {videoStage}
       <div className="absolute inset-0 z-20 bg-background/30" />

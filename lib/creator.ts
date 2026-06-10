@@ -40,7 +40,6 @@ const portfolioBrandMap: Record<string, string> = {
   zaio: "zaio",
   "campus-central": "campus-central",
   thooto: "thooto",
-  "psang-feelz": "psang-feelz",
   emeris: "emeris",
   "kena-health": "kena-health",
   "lets-stop": "lets-stop",
@@ -48,7 +47,6 @@ const portfolioBrandMap: Record<string, string> = {
   "mr-price": "mr-price",
   naked: "naked",
   payshap: "payshap",
-  sarafina: "sarafina",
   "universal-music-group": "universal-music-group",
   wesbank: "wesbank",
   "checkers-sixty60": "checkers-sixty60",
@@ -62,10 +60,4 @@ export function getPortfolioVideo(portfolioId: string): BrandVideo | undefined {
   const brandId = portfolioBrandMap[portfolioId];
   if (!brandId) return undefined;
   return getBrandVideo(brandId);
-}
-
-export function formatViewCount(views: number): string {
-  if (views >= 1_000_000) return `${(views / 1_000_000).toFixed(1)}M`;
-  if (views >= 1_000) return `${Math.round(views / 1_000)}K`;
-  return views.toLocaleString();
 }

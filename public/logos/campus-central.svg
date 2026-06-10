@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" role="img" aria-label="Campus Central">
+  <rect width="200" height="80" rx="12" fill="#1a1028"/>
+  <text x="100" y="34" text-anchor="middle" fill="#7C3AED" font-family="system-ui, sans-serif" font-size="22" font-weight="700" letter-spacing="0.05em">CAMPUS</text>
+  <text x="100" y="58" text-anchor="middle" fill="#E9D5FF" font-family="system-ui, sans-serif" font-size="18" font-weight="600" letter-spacing="0.12em">CENTRAL</text>
+</svg>
