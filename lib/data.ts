@@ -524,11 +524,21 @@ export const navLinks = {
   },
 };
 
-// Agency stats (legacy PDF figures). Live TikTok stats live in lib/creator-data.json.
+// Agency stats from Lawu Media Booklet (verified PDF figures).
+// Live TikTok stats live in lib/creator-data.json.
 export const stats = [
   { value: 50, suffix: "+", label: "Campaigns Delivered" },
   { value: 2.5, suffix: "M+", label: "Impressions Generated" },
   { value: 6, suffix: "", label: "Brand Partners" },
   { value: 340, suffix: "%", label: "Avg. ROI Increase" },
+];
+
+// Key booklet case-study metrics for credibility sections
+export const bookletCaseMetrics = [
+  { client: "Garnier", metrics: ["2.5M+ Impressions", "150+ Creator Partnerships", "4.8% Engagement Rate"] },
+  { client: "Disney Plus", metrics: ["340% Sign-up Increase", "500K+ Reach", "12% Conversion Rate"] },
+  { client: "Ocean Basket", metrics: ["180K New Followers", "25% Foot Traffic Lift", "3M+ Impressions"] },
+  { client: "Zaio", metrics: ["200% Enrollment Increase", "1M+ Student Reach", "50+ Micro-Influencers"] },
+  { client: "Campus Central", metrics: ["500+ Qualified Leads", "85% Occupancy Rate", "2M+ Student Reach"] },
 ];
 

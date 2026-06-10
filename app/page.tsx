@@ -19,12 +19,14 @@ import { Footer } from "@/components/footer";
 import { Section, SectionHeading, SectionSubtitle } from "@/components/section";
 import { Button } from "@/components/button";
 import { VideoHero } from "@/components/video-hero";
-import { Logo3DBanner } from "@/components/logo-3d-banner";
+import { PartnershipEcosystem } from "@/components/partnership-ecosystem";
+import { ReelShowcase } from "@/components/reel-showcase";
+import { ImpactMetrics } from "@/components/impact-metrics";
+import { RevealText, RevealBlock } from "@/components/reveal-text";
 import { TagMarquee } from "@/components/tag-marquee";
 import { ServiceRow } from "@/components/service-row";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { FAQItem } from "@/components/faq-item";
-import { StatsCounter } from "@/components/stats-counter";
 import { CreatorSpotlight } from "@/components/creator-spotlight";
 import { ClientWrapper } from "@/components/client-wrapper";
 import { heroVideos } from "@/lib/creator";
@@ -58,18 +60,24 @@ export default function HomePage() {
           {/* Content - Responsive sizing and spacing */}
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
             >
-              <h1 
-                className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.1] tracking-tight mb-4 sm:mb-6"
-                style={{ 
-                  textShadow: "0 4px 30px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.3)"
+              <div
+                style={{
+                  textShadow:
+                    "0 4px 30px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.3)",
                 }}
               >
-                {heroContent.headline}
-              </h1>
+                <RevealText
+                  as="h1"
+                  immediate
+                  className="font-editorial text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.05] tracking-tight mb-4 sm:mb-6 justify-center"
+                >
+                  {heroContent.headline}
+                </RevealText>
+              </div>
             </motion.div>
 
             <motion.p
@@ -144,23 +152,24 @@ export default function HomePage() {
           </motion.div>
         </section>
 
-        {/* Section 2: 3D Logo Banner */}
-        <Logo3DBanner />
+        {/* Section 2: Partnership Ecosystem */}
+        <PartnershipEcosystem />
+
+        {/* Section 2b: Premium Reel Showcase */}
+        <ReelShowcase />
 
         {/* Section 3: Expertise Marquee + CTA */}
         <Section className="py-16 sm:py-24 md:py-32">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center mb-8 sm:mb-12">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <SectionHeading size="3xl" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+              <RevealBlock>
+                <RevealText
+                  as="h2"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-text-primary leading-[1.1]"
+                >
                   Your full-funnel digital growth partner
-                </SectionHeading>
-              </motion.div>
+                </RevealText>
+              </RevealBlock>
 
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
@@ -387,24 +396,10 @@ export default function HomePage() {
           </div>
         </Section>
 
-        {/* Stats Section */}
+        {/* Stats Section — Booklet + Live TikTok */}
         <Section className="bg-surface py-16 sm:py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-center md:text-left"
-            >
-              <SectionHeading size="xl" className="text-2xl sm:text-3xl">
-                Real reach. Real numbers.
-              </SectionHeading>
-              <SectionSubtitle className="mt-2">
-                Live TikTok stats from founder Paki Lawu&apos;s creator channel.
-              </SectionSubtitle>
-            </motion.div>
-            <StatsCounter />
+          <ImpactMetrics />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
             <CreatorSpotlight />
           </div>
         </Section>

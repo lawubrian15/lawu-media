@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -31,6 +32,11 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col bg-background text-text-primary">
         {children}
+        <Script
+          src="https://inspiring-sundae-8de6a8.netlify.app/widget.js"
+          strategy="afterInteractive"
+          data-tenant-key="3d80a9be-bd45-4080-96f9-6f9d43bab3da"
+        />
       </body>
     </html>
   );

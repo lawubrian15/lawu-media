@@ -5,41 +5,63 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Section, SectionHeading, SectionSubtitle } from "@/components/section";
 import { Button } from "@/components/button";
+import { ReelShowcase } from "@/components/reel-showcase";
+import { PartnershipEcosystem } from "@/components/partnership-ecosystem";
+import { ImpactMetrics } from "@/components/impact-metrics";
 import { PortfolioCard } from "@/components/portfolio-card";
 import { TestimonialCard } from "@/components/testimonial-card";
+import { RevealText, RevealBlock, RevealLine } from "@/components/reveal-text";
 import { portfolioItems, testimonials } from "@/lib/data";
 import { formatViewCount, getPortfolioVideo } from "@/lib/creator";
+import { ClientWrapper } from "@/components/client-wrapper";
 
 export default function PortfolioPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <ClientWrapper>
+    <main className="min-h-screen bg-background film-grain">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-surface to-background" />
+      <section className="relative overflow-hidden pt-32 pb-20 md:pt-44 md:pb-28">
+        <div className="absolute inset-0 bg-gradient-to-b from-surface via-background to-background" />
+        <div className="pointer-events-none absolute -right-40 top-20 h-96 w-96 rounded-full bg-accent/5 blur-3xl" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl"
-          >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-text-primary leading-[1.1] tracking-tight mb-8">
-              Trusted by Industry Leaders
-            </h1>
-            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
-              We have a proven track record of delivering results for global
-              household names and high-growth local innovators.
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <RevealBlock>
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-accent">
+              Our Portfolio
+            </span>
+            <RevealText
+              as="h1"
+              immediate
+              className="mt-4 max-w-4xl text-4xl font-bold tracking-tight text-text-primary md:text-6xl lg:text-7xl"
+            >
+              Trusted by industry leaders.
+            </RevealText>
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-text-secondary md:text-xl">
+              A proven track record of delivering measurable results for global
+              household names and high-growth local innovators across South
+              Africa.
             </p>
-          </motion.div>
+          </RevealBlock>
+          <RevealLine className="mt-12 max-w-xl" delay={0.3} />
         </div>
       </section>
 
+      {/* Premium Reel Showcase — Desktop priority */}
+      <ReelShowcase />
+
+      {/* Partnership Ecosystem */}
+      <PartnershipEcosystem />
+
+      {/* Impact Metrics */}
+      <Section className="bg-surface py-16 sm:py-24">
+        <ImpactMetrics />
+      </Section>
+
       {/* Testimonials / Case Studies */}
       <Section>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -47,13 +69,18 @@ export default function PortfolioPage() {
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <SectionHeading size="2xl">Proven Results</SectionHeading>
+            <RevealText
+              as="h2"
+              className="text-3xl font-bold tracking-tight text-text-primary md:text-4xl"
+            >
+              Proven results.
+            </RevealText>
             <SectionSubtitle className="mt-4">
-              Real impact for real brands across South Africa.
+              Real impact for real brands — verified from the Lawu Media booklet.
             </SectionSubtitle>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((testimonial, index) => (
               <TestimonialCard
                 key={testimonial.id}
@@ -69,9 +96,9 @@ export default function PortfolioPage() {
         </div>
       </Section>
 
-      {/* Portfolio Grid */}
+      {/* Portfolio Grid — brands without synced reels */}
       <Section className="bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -79,13 +106,13 @@ export default function PortfolioPage() {
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <SectionHeading size="2xl">Our Portfolio</SectionHeading>
+            <SectionHeading size="2xl">All Brand Partners</SectionHeading>
             <SectionSubtitle className="mt-4">
-              A selection of brands we&apos;ve helped grow.
+              Every partnership backed by strategy, creative, and reporting.
             </SectionSubtitle>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {portfolioItems.map((item, index) => {
               const campaignVideo = getPortfolioVideo(item.id);
               return (
@@ -112,16 +139,19 @@ export default function PortfolioPage() {
 
       {/* CTA Section */}
       <Section>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <SectionHeading size="3xl" className="mb-8">
+            <RevealText
+              as="h2"
+              className="mb-8 justify-center text-3xl font-bold tracking-tight text-text-primary md:text-5xl"
+            >
               Ready to join our portfolio of success stories?
-            </SectionHeading>
+            </RevealText>
             <Button href="/contact" variant="primary" size="lg">
               Start Your Project
             </Button>
@@ -131,5 +161,6 @@ export default function PortfolioPage() {
 
       <Footer />
     </main>
+    </ClientWrapper>
   );
 }
