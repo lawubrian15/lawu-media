@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# editor / local tooling
+.cursor/
+.claude/
+
+# large local assets & binaries (keep out of git history)
+Campaign Videos and logos/
+*.exe
