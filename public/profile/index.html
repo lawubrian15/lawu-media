@@ -296,6 +296,49 @@
     .controls { opacity: 1; }
   }
 
+  /* ---------- PRICING ---------- */
+  #pricing { background: var(--paper); }
+  #pricing .b1 { width: 600px; height: 500px; top: -220px; right: -190px;
+    background: radial-gradient(circle at 45% 50%, var(--cyan), var(--blue) 55%, var(--blue-deep) 88%); opacity: 0.5; }
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: stretch; }
+  .price-card {
+    position: relative; overflow: hidden; border-radius: var(--radius);
+    padding: 46px 42px; display: flex; flex-direction: column; color: #fff;
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  }
+  .price-card.blue { background: var(--blue); box-shadow: 0 18px 46px rgba(0,119,251,0.3); }
+  .price-card.ink  { background: var(--ink); box-shadow: 0 18px 46px rgba(35,31,32,0.22); }
+  .price-card:hover { transform: translateY(-6px); }
+  .price-card .tier { font-family: var(--font-display); font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.72; }
+  .price-card h3 { font-size: clamp(25px, 3vw, 30px); margin-top: 12px; color: #fff; }
+  .price-card .lead { font-size: 15.5px; margin-top: 11px; color: rgba(255,255,255,0.82); max-width: 380px; }
+  .price-tag { display: flex; align-items: baseline; gap: 8px; margin: 26px 0 4px; }
+  .price-tag .amt { font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(42px, 5.4vw, 58px); letter-spacing: -0.05em; line-height: 1; }
+  .price-tag .per { font-size: 15px; color: rgba(255,255,255,0.72); }
+  .price-feats { list-style: none; margin: 30px 0 0; display: grid; gap: 14px; }
+  .price-feats li { display: flex; gap: 12px; align-items: flex-start; font-size: 15.5px; color: rgba(255,255,255,0.94); }
+  .price-feats svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; fill: none;
+    stroke: currentColor; stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; }
+  .price-feats li.off { color: rgba(255,255,255,0.44); }
+  .price-feats li.off span { text-decoration: line-through; text-decoration-thickness: 1px; }
+  .price-rec { position: absolute; top: 24px; right: 24px;
+    font-family: var(--font-display); font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    background: rgba(255,255,255,0.22); border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 100px; padding: 6px 13px; }
+  .price-cta { margin-top: auto; padding-top: 34px; }
+  .price-cta .btn { width: 100%; justify-content: center; }
+  .btn-white { background: #fff; color: var(--blue); }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.22); }
+  .price-foot { margin-top: 26px; font-size: 14px; color: var(--muted-on-light); display: flex; gap: 9px; align-items: flex-start; }
+  .price-foot svg { width: 16px; height: 16px; stroke: var(--blue); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 3px; }
+  @media (max-width: 860px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+    .price-card { padding: 36px 28px; }
+  }
+
   /* ---------- FACE ---------- */
   #face { background: var(--ink); }
   #face .b1 { width: 700px; height: 580px; top: -140px; left: -200px;
@@ -400,6 +443,7 @@
       <a href="#overview">Overview</a>
       <a href="#inhouse">How We Work</a>
       <a href="#work">Our Work</a>
+      <a href="#pricing">Packages</a>
       <a href="#face">The Face</a>
       <a href="#cases">Case Studies</a>
     </div>
@@ -582,6 +626,63 @@
         </p>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="pricing" class="light grain">
+  <div class="blob b1"></div>
+  <div class="container">
+    <span class="eyebrow">Packages</span>
+    <div class="section-head">
+      <h2>Two ways to work with us.</h2>
+      <p>Both put our crew on site and keep every edit in-house. The only difference is who brings the ideas.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card blue reveal">
+        <span class="price-rec">Most popular</span>
+        <span class="tier">Full Production</span>
+        <h3>Concept to upload</h3>
+        <p class="lead">You tell us the goal. We handle everything from the first idea to the published post.</p>
+        <div class="price-tag"><span class="amt">R15,000</span><span class="per">/ month</span></div>
+        <ul class="price-feats">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Video ideation — concepts built on live trend data</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>On-site shooting — our crew, our gear, your location</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Full in-house editing — cuts, captions, colour, sound</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Publishing cycles and performance reporting</span></li>
+        </ul>
+        <div class="price-cta">
+          <a class="btn btn-white" href="mailto:pakilawu0@gmail.com?subject=Full%20Production%20package%20(R15%2C000%2Fmonth)">
+            Start with Full Production
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="price-card ink reveal">
+        <span class="tier">Production</span>
+        <h3>You bring the concepts</h3>
+        <p class="lead">Already have the ideas? We show up, shoot them properly, and cut them ourselves.</p>
+        <div class="price-tag"><span class="amt">R10,000</span><span class="per">/ month</span></div>
+        <ul class="price-feats">
+          <li class="off"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg><span>Video ideation</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>On-site shooting — our crew, our gear, your location</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Full in-house editing — cuts, captions, colour, sound</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Publishing cycles and performance reporting</span></li>
+        </ul>
+        <div class="price-cta">
+          <a class="btn btn-outline" style="border-color:rgba(255,255,255,0.3); color:#fff;" href="mailto:pakilawu0@gmail.com?subject=Production%20package%20(R10%2C000%2Fmonth)">
+            Start with Production
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="price-foot">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-5M12 8h.01" stroke-linecap="round"/></svg>
+      <span>Monthly retainer. Need something different — a one-off campaign, a launch sprint, or higher content volume? We'll scope it with you.</span>
+    </p>
   </div>
 </section>
 
