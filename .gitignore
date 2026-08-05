@@ -47,3 +47,10 @@ next-env.d.ts
 # large local assets & binaries (keep out of git history)
 Campaign Videos and logos/
 *.exe
+
+# Superseded profile builds. The live profile is public/profile/ (served at
+# /profile) — these are earlier standalone/zip versions kept only as local
+# copies. They duplicate ~75MB of video, so never let them into git history.
+LawuMediaProfile/
+LawuMediaSite/
+*.zip
